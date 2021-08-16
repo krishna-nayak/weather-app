@@ -17,14 +17,25 @@
     <main class="text-center my-16">
       <div>
         <form action="/" method="post">
-          <input type="text" placeholder="Location" name="location" class="h-16 w-96 p-6 rounded-lg shadow-lg" autocomplete="off" />
+          <input type="text" placeholder="Location" id="location" name="location" class="h-16 w-96 p-6 rounded-lg shadow-lg" autocomplete="off" />
           <button type="submit" class="h-16 w-28 ml-6 shadow-lg btn-red">Search</button>
         </form>
       </div>
 
-      <div>
-        <div class="bg-white shadow-lg h-96 w-96 mx-auto my-16 rounded-lg p-6">
+      <div class="text-center">
+        <div class="bg-white shadow-lg h-72 w-64 mx-auto my-16 rounded-lg p-6 flex flex-col justify-evenly">
           <!-- weather Icon -->
+          <div>
+            <label for="location" class="text-xl text-gray-400 mb-2"><%= cityName %></label>
+            <div class="flex justify-center">
+              <p class="text-5xl font-medium"><%= temp %></p>
+              <p class="text-lg font-extralight">˚C</p>
+            </div>
+          </div>
+          <div>
+            <div class="h-16 w-16 mx-auto bg-red-600 mb-5"></div>
+            <p class="text-xs"><%= description %></p>
+          </div>
         </div>
       </div>
     </main>
