@@ -23,18 +23,19 @@
       </div>
 
       <div class="text-center">
-        <div class="bg-white shadow-lg h-72 w-64 mx-auto my-16 rounded-lg p-6 flex flex-col justify-evenly">
+        <div class="bg-gray-50 w-96 min-w-max mx-auto shadow-lg h-64 my-16 rounded-lg p-6 flex justify-around relative">
           <!-- weather Icon -->
-          <div>
-            <label for="location" class="text-xl text-gray-400 mb-2"><%= cityName %></label>
+          <div class="flex items-center w-32">
+            <img src=" http://openweathermap.org/img/wn/<%= icon %>@4x.png" alt="" />
+          </div>
+
+          <div class="flex flex-col items-start justify-center">
             <div class="flex justify-center">
-              <p class="text-5xl font-medium"><%= temp %></p>
+              <p class="text-5xl font-light"><%= Math.round(temp) %></p>
               <p class="text-lg font-extralight">˚C</p>
             </div>
-          </div>
-          <div>
-            <div class="h-16 w-16 mx-auto bg-red-600 mb-5"></div>
-            <p class="text-xs"><%= description %></p>
+            <label for="location" class="text-4xl font-extralight text-gray-400 my-1"><%= cityName %></label>
+            <p class="text-lg font-extralight"><%= description %></p>
           </div>
         </div>
       </div>

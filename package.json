@@ -4,7 +4,7 @@
   "description": "Weather Web App",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js",
+    "server": "nodemon app.js",
     "build": "postcss tailwind.css -o public/styles.css"
   },
   "author": "krishna",

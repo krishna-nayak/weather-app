@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const fetch = require("node-fetch");
+// const { request, response } = require("express");
 
 const app = express();
 
@@ -16,25 +17,39 @@ async function getData(cityName) {
   const weatherJSON = await weather.json();
   return weatherJSON;
 }
-
-let cityName = "delhi";
+let cityName = "";
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get("/", async (request, response) => {
-  let data = await getData(cityName);
-  response.render("index", { cityName: data.name, description: data.weather[0].description, temp: data.main.temp });
-});
+app.get("/", homeCtr);
 
-app.post("/", async function (request, response) {
-  let previousData = cityName;
-  cityName = request.body.location != "" ? request.body.location : previousData;
-
-  response.redirect("/");
-});
+app.post(
+  "/",
+  function (request, response, next) {
+    let previousData = cityName;
+    request.data = request.body.location != "" ? request.body.location.trim() : previousData;
+    return next();
+  },
+  homeCtr
+);
 
 app.listen(3000, () => {
   console.log("Server Start on localhost:3000");
 });
+
+async function homeCtr(request, response) {
+  console.log(request.data);
+  if (request.data === undefined) cityName = "delhi";
+  else cityName = request.data;
+
+  console.log(request.data);
+  let data = await getData(cityName);
+  try {
+    response.render("index", { cityName: data.name, description: data.weather[0].description, temp: data.main.temp, icon: data.weather[0].icon });
+  } catch (error) {
+    // console.error(error);
+    response.render("index", { cityName: cityName, description: data.message, temp: "?", icon: "none" });
+  }
+}
