@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "server": "nodemon app.js",
-    "build": "postcss tailwind.css -o public/styles.css"
+    "build": "postcss tailwind.css -o public/styles.css",
+    "prod": "NODE_ENV=production postcss tailwind.css -o public/styles.css"
   },
   "author": "krishna",
   "license": "ISC",
