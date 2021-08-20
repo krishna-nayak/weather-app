@@ -4,6 +4,7 @@
   "description": "Weather Web App",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "server": "nodemon app.js",
     "build": "postcss tailwind.css -o public/styles.css",
     "prod": "NODE_ENV=production postcss tailwind.css -o public/styles.css"
