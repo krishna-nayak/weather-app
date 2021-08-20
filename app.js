@@ -2,12 +2,12 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const fetch = require("node-fetch");
-// const { request, response } = require("express");
+require("dotenv").config();
 
 const app = express();
 
 async function getData(cityName) {
-  const API_key = "06e37de5c4e8acab1d3cbc938a401688";
+  const API_key = process.env.API_KEY;
   const unit = "metric";
 
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${API_key}&units=${unit}`;
