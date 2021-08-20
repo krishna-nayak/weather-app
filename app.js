@@ -5,20 +5,8 @@ const fetch = require("node-fetch");
 require("dotenv").config();
 
 const app = express();
-
-async function getData(cityName) {
-  const API_key = process.env.API_KEY;
-  const unit = "metric";
-
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${API_key}&units=${unit}`;
-  // console.log(url);
-  // Data fetch
-  const weather = await fetch(url);
-  const weatherJSON = await weather.json();
-  return weatherJSON;
-}
 let cityName = "";
-
+const port = process.env.PORT || 3000;
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -27,8 +15,8 @@ app.get("/", homeCtr);
 
 app.post("/", postFunction, homeCtr);
 
-app.listen(3000, () => {
-  console.log("Server Start on localhost:3000");
+app.listen(port, () => {
+  console.log(`Server Start on http://localhost:${port}`);
 });
 
 // Route Function
@@ -47,4 +35,16 @@ function postFunction(request, response, next) {
   let previousData = cityName;
   request.data = request.body.location != "" ? request.body.location.trim() : previousData;
   return next();
+}
+
+async function getData(cityName) {
+  const API_key = process.env.API_KEY;
+  const unit = "metric";
+
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${API_key}&units=${unit}`;
+  // console.log(url);
+  // Data fetch
+  const weather = await fetch(url);
+  const weatherJSON = await weather.json();
+  return weatherJSON;
 }
