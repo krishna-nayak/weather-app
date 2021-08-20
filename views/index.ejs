@@ -16,16 +16,17 @@
     <!-- display -->
     <main class="text-center my-16">
       <div>
-        <form action="/" method="post">
-          <input type="text" placeholder="Location" id="location" name="location" class="h-16 w-96 p-6 rounded-lg shadow-lg" autocomplete="off" />
-          <button type="submit" class="h-16 w-28 ml-6 shadow-lg btn-red">Search</button>
+        <form action="/" method="post" class="flex justify-center flex-col items-center md:flex-row">
+          <input type="text" class="w-72 p-3 rounded-lg shadow-lg md:w-80 md:h-16" placeholder="Location" id="location" name="location" autocomplete="off" />
+          <!--btn h-16 w-28 ml-6 , inp h-16 w-96 -->
+          <button type="submit" class="w-72 shadow-lg btn-red my-2 md:w-28 md:h-16 md:mx-4">Search</button>
         </form>
       </div>
 
       <div class="text-center">
-        <div class="bg-gray-50 w-96 min-w-max mx-auto shadow-lg h-64 my-16 rounded-lg p-6 flex justify-around relative">
+        <div class="bg-gray-50 w-72 min-w-max mx-auto shadow-lg my-16 rounded-lg p-6 flex flex-col justify-around relative md:flex-row md:h-64 sm:w-80">
           <!-- weather Icon -->
-          <div class="flex items-center w-32">
+          <div class="flex items-center w-32 mx-auto md:mx-2.5">
             <img src=" http://openweathermap.org/img/wn/<%= icon %>@4x.png" alt="" />
           </div>
 
